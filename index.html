@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Login Interface</title>
+  <style>
+    /* Base Body */
+    body {
+      font-family: Arial, sans-serif;
+      background: url("https://picsum.photos/1600/900?blur=2") no-repeat center center/cover fixed;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      transition: background 0.8s ease, color 0.8s ease;
+    }
+
+    /* Login Box */
+    .login-box {
+      background: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 14px;
+      border: 4px ridge #2575fc;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+      width: 320px;
+      text-align: center;
+      transform: translateY(-200px);
+      opacity: 0;
+      transition: transform 2s ease, opacity 2s ease, background 0.8s ease, color 0.8s ease;
+    }
+    .login-box.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Hover (jHover-like effect) */
+    .login-box:hover {
+      transform: scale(1.03);
+      box-shadow: 0 12px 24px rgba(37, 117, 252, 0.5);
+    }
+
+    /* Heading */
+    .login-box h2 {
+      margin-bottom: 20px;
+      font-family: cursive;
+      font-size: 28px;
+      background: linear-gradient(135deg, #6a11cb, #2575fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+    }
+
+    /* Inputs */
+    .login-box input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 13px; /* smaller for username/password */
+    }
+
+    /* Button */
+    .login-box button {
+      background: #2575fc;
+      color: white;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .login-box button:hover {
+      background: #1a5ed7;
+    }
+
+    /* Note */
+    .note {
+      margin-top: 12px;
+      font-size: 13px;
+      color: #555;
+    }
+
+    /* Dark Mode */
+    body.dark-mode {
+      background: #121212;
+      color: #f5f5f5;
+    }
+    body.dark-mode .login-box {
+      background: rgba(30, 30, 30, 0.95);
+      border: 4px ridge #6a11cb;
+      color: #f5f5f5;
+    }
+    body.dark-mode .login-box input {
+      background: #222;
+      border: 1px solid #555;
+      color: #eee;
+    }
+    body.dark-mode .login-box button {
+      background: #6a11cb;
+    }
+    body.dark-mode .login-box button:hover {
+      background: #5010a3;
+    }
+    body.dark-mode .note {
+      color: #bbb;
+    }
+
+    /* Toggle Button */
+    .toggle-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: #fff;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: bold;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      transition: background 0.3s, color 0.3s;
+    }
+    .toggle-btn:hover {
+      background: #2575fc;
+      color: #fff;
+    }
+
+    /* Media Queries */
+    @media screen and (max-width: 768px) {
+      .login-box {
+        width: 80%;
+        padding: 25px;
+      }
+      .login-box h2 {
+        font-size: 24px;
+      }
+    }
+
+    @media screen and (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+      .login-box {
+        width: 100%;
+        padding: 20px;
+      }
+      .login-box h2 {
+        font-size: 22px;
+      }
+      .login-box input,
+      .login-box button {
+        font-size: 13px;
+        padding: 10px;
+      }
+      .note {
+        font-size: 12px;
+      }
+      .toggle-btn {
+        padding: 6px 10px;
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Dark Mode Toggle Button -->
+  <button class="toggle-btn" onclick="toggleDarkMode()">🌙 Dark Mode</button>
+
+  <div class="login-box" id="loginBox">
+    <h2>Student Login</h2>
+    <form onsubmit="return validateLogin(event)">
+      <input type="text" id="username" placeholder="Enter Student ID" required>
+      <input type="password" id="password" placeholder="Enter Password" required>
+      <button type="submit">Login</button>
+    </form>
+    <p class="note">For demo purpose only 🔐</p>
+  </div>
+
+  <script>
+    // Animate box on load
+    window.onload = () => {
+      document.getElementById("loginBox").classList.add("show");
+    };
+
+    // Dark Mode Toggle
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+      const btn = document.querySelector(".toggle-btn");
+      if (document.body.classList.contains("dark-mode")) {
+        btn.textContent = "☀️ Light Mode";
+      } else {
+        btn.textContent = "🌙 Dark Mode";
+      }
+    }
+
+    // Dummy Validation
+    function validateLogin(event) {
+      event.preventDefault();
+      const user = document.getElementById('username').value;
+      const pass = document.getElementById('password').value;
+
+      if(user === "student123" && pass === "password") {
+        alert("✅ Login Successful! Welcome, " + user);
+      } else {
+        alert("❌ Invalid Student ID or Password!");
+      }
+    }
+  </script>
+</body>
+</html>
