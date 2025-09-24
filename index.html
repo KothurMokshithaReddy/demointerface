@@ -8,7 +8,7 @@
     /* Base Body */
     body {
       font-family: Arial, sans-serif;
-      background: url("https://picsum.photos/1600/900?blur=2") no-repeat center center/cover fixed;
+      background: url("https://media.istockphoto.com/id/2186506425/photo/foggy-weather-lanterns-by-the-road-night-city.jpg?s=612x612&w=0&k=20&c=33_DBcM5kxShmf5ExiKJprgT_ENyXFT5qQlDk_VJe2Q=") no-repeat center center/cover fixed;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -16,8 +16,6 @@
       margin: 0;
       transition: background 0.8s ease, color 0.8s ease;
     }
-
-    /* Login Box */
     .login-box {
       background: rgba(255, 255, 255, 0.9);
       padding: 30px;
@@ -34,14 +32,10 @@
       transform: translateY(0);
       opacity: 1;
     }
-
-    /* Hover (jHover-like effect) */
     .login-box:hover {
       transform: scale(1.03);
       box-shadow: 0 12px 24px rgba(37, 117, 252, 0.5);
     }
-
-    /* Heading */
     .login-box h2 {
       margin-bottom: 20px;
       font-family: cursive;
@@ -51,8 +45,6 @@
       -webkit-text-fill-color: transparent;
       text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
     }
-
-    /* Inputs */
     .login-box input {
       width: 100%;
       padding: 10px;
@@ -61,8 +53,6 @@
       border-radius: 8px;
       font-size: 13px; /* smaller for username/password */
     }
-
-    /* Button */
     .login-box button {
       background: #2575fc;
       color: white;
@@ -78,15 +68,11 @@
     .login-box button:hover {
       background: #1a5ed7;
     }
-
-    /* Note */
     .note {
       margin-top: 12px;
       font-size: 13px;
       color: #555;
     }
-
-    /* Dark Mode */
     body.dark-mode {
       background: #121212;
       color: #f5f5f5;
@@ -110,8 +96,6 @@
     body.dark-mode .note {
       color: #bbb;
     }
-
-    /* Toggle Button */
     .toggle-btn {
       position: absolute;
       top: 20px;
@@ -130,8 +114,6 @@
       background: #2575fc;
       color: #fff;
     }
-
-    /* Media Queries */
     @media screen and (max-width: 768px) {
       .login-box {
         width: 80%;
@@ -141,7 +123,6 @@
         font-size: 24px;
       }
     }
-
     @media screen and (max-width: 480px) {
       body {
         padding: 10px;
@@ -179,16 +160,11 @@
       <input type="password" id="password" placeholder="Enter Password" required>
       <button type="submit">Login</button>
     </form>
-    <p class="note">For demo purpose only 🔐</p>
   </div>
-
   <script>
-    // Animate box on load
     window.onload = () => {
       document.getElementById("loginBox").classList.add("show");
     };
-
-    // Dark Mode Toggle
     function toggleDarkMode() {
       document.body.classList.toggle("dark-mode");
       const btn = document.querySelector(".toggle-btn");
@@ -198,8 +174,6 @@
         btn.textContent = "🌙 Dark Mode";
       }
     }
-
-    // Dummy Validation
     function validateLogin(event) {
       event.preventDefault();
       const user = document.getElementById('username').value;
@@ -211,6 +185,7 @@
         alert("❌ Invalid Student ID or Password!");
       }
     }
+   <pre> <button>Submit        Reset    </button></pre>
   </script>
 </body>
 </html>
